@@ -22,8 +22,10 @@ void dijkstra(int start)
     while (!pq.empty())
     {
         int distance = -pq.top().first;
+        printf("distance : %d\n", distance);
         // 짧은 것이 먼저 오도록 음수화(-)
         int current = pq.top().second;
+        printf("current : %d\n", current);
         pq.pop();
         // 최단 거리가 아닌 경우 스킵
         if (ans[current] < distance)
@@ -34,15 +36,19 @@ void dijkstra(int start)
         {
             // 선택된 노드의 인접 노드
             int next = a[current][i].second;
+            printf("next : %d\n", next);
             // 선택된 노드를 인접 노드로 거쳐서 가는 비용
             int nextDistance = distance + a[current][i].first;
+            printf("nextDistance : %d\n", nextDistance);
             // 기존의 최소 비용보다 더 저렴하면 교체
             if (nextDistance < ans[next])
             {
+            	printf("update next : %d\n", ans[next]);
                 ans[next] = nextDistance;
                 pq.push(make_pair(-nextDistance, next));
             }
         }
+        printf("\n");
     }
 }
 
